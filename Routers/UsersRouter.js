@@ -1,15 +1,19 @@
 const express = require('express')
 const UserRouter = express.Router(); 
-const {getAllUsers} = require('../query_helper_functions.js')
-UserRouter.get('/users',async(req,res)=>{
-    try{
-        const data = await getAllUsers(); 
-        res.status(200).send(data)
-    }
-    catch(e){
-        res.status(400).send(e.message)
-    }
-})
+
+const {
+    createUser,
+    deleteUser,
+    getUser,
+    updateUser
+} = require('../Controllers/UserController')
+
+
+UserRouter.get("/user/:uid",getUser); 
+UserRouter.put("/user/:uid",updateUser);
+UserRouter.post("/user",createUser);
+UserRouter.delete("/user/:uid",deleteUser);
+
 
 module.exports = {
     UserRouter

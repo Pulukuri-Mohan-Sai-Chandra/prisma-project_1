@@ -20,5 +20,6 @@ model users {
   USER_NAME     String
   USER_EMAIL    String  @unique(map: "Uniq User")
   USER_PASSWORD String
+  CREATED_ON    DateTime @default(now())
   tasks         tasks[]
 }
